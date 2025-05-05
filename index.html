@@ -10,8 +10,8 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="js/menu.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+  <script src="js/menu.js" defer></script>
   <script>
     (function (i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -30,7 +30,21 @@
 </head>
 
 <body>
-  <div class="menu-container"></div>
+  <div class="menu-container">
+    <div class="menu">
+    <div class="menu-table flex-row-space-between">
+      <div class="logo flex-row-center">
+        <a href="index.html">Jaesung Ahn</a>
+      </div>
+      <a class="menu-button" tabindex="0" href="javascript:void(0)">
+        <img class="noselect" src="img/menu.png">
+      </a>
+      <div class="menu-items flex-row-center flex-item">
+        <a href="http://www.linkedin.com/pub/yen-chia-hsu/58/a26/716">LinkedIn</a>
+        <a href="https://github.com/yalgaeahn">GitHub</a>
+      </div>
+    </div>
+  </div></div>
   <div class="content-container">
     <div class="content">
       <div class="content-table flex-column">
@@ -66,75 +80,12 @@
             </p>
             <p class="text">
             </p>
-            <p class="text">
-              I am a ~ at the <a href="https://ivi.uva.nl" target="_blank">Informatics Institute</a>, <a href="https://www.uva.nl/en" target="_blank">KAIST</a>.
             </p>
-            <p class="text">
-             # Add
-            </p>
-            <h3>Table of Content</h3>
-            <ul>
-              <li><a href="#award">Awards and Honors</a></li>
-              <li><a href="#teaching">Teaching</a></li>
-            </ul>
-            <h2 id="award">Awards and Honors</h2>
-            <hr>
-            <!--This list is reversed on the website due to reverse number listing-->
-            <ol class="publication A-list">
-              <li>
-                <p class="text-small-margin">
-                  
-                </p>
-              </li>
-              <li>
-                <p class="text-small-margin">
-                 
-                </p>
-              </li>
-              <li>
-                <p class="text-small-margin">
-                  
-                </p>
-              </li>
-              <li>
-                <p class="text-small-margin">
-                  
-                </p>
-              </li>
-              <li>
-                <p class="text-small-margin">
-                  
-                </p>
-              </li>
-              <li>
-                <p class="text-small-margin">
-                  
-                </p>
-              </li>
-              <li>
-                <p class="text-small-margin">
-                
-                </p>
-              </li>
-            </ol>
-          </div>
-          <!--Start Teaching and Projects-->
-          <div class="flex-row full-width">
-            <div class="flex-item flex-column full-width">
-              <h2 id="teaching">Teaching</h2>
-              <hr>
-              <ul>
-                <li>
-           
-                </li>
-                <li>
-                  >Physics</a>, 2019~2024,Department of Physics, Chugbuk National University
-                </li>
-              </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div> <!-- end .flex-item -->
+        </div> <!-- end .flex-row -->
+      </div> <!-- end .content-table -->
+    </div> <!-- end .content -->
+  </div> <!-- end .content-container -->
 <script>
 // Create a hidden blog button that appears after clicking the profile image five times
 let clickCount = 0;
