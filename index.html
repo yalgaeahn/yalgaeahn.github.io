@@ -1,96 +1,172 @@
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html>
 
-        <!--========== BOX ICONS ==========-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<head>
+  <title>Jaesung Ahn</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-103598896-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
 
-        <!--========== CSS ==========-->
-        <link rel="stylesheet" href="assets/css/styles.css">
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <img class="image" id="me" src="img/me.JPG">
+          </div>
+          <div class="flex-item flex-column">
+            <h2>Jaesung Ahn</h2>
+            <p class="text">
+              Phd Candidate<br>
+              yalgaeahn (at) kaist.ac.kr<br>
+              <a href="https://quantum.kaist.ac.kr/english" target="_blank">Graduate School of Quantum Science</a><br>
+              <a href="https://www.kaist.ac.kr/en/" target="_blank">Korea Advanced Institute of Science and Technology</a><br>
+              <a href="https://orcid.org/0009-0009-4338-1687">
+                <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+                https://orcid.org/0009-0009-4338-1687
+              </a><br>
+            </p>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <p class="text">
+              <span class="custom-text-danger">
+                Will be updated.
+              </span>
+            </p>
+            <h2>Biography</h2>
+            <hr>
+            <p class="text">
+              I am a human.
+            </p>
+            <p class="text">
+            </p>
+            <p class="text">
+              I am a ~ at the <a href="https://ivi.uva.nl" target="_blank">Informatics Institute</a>, <a href="https://www.uva.nl/en" target="_blank">KAIST</a>.
+            </p>
+            <p class="text">
+             # Add
+            </p>
+            <h3>Table of Content</h3>
+            <ul>
+              <li><a href="#award">Awards and Honors</a></li>
+              <li><a href="#teaching">Teaching</a></li>
+            </ul>
+            <h2 id="award">Awards and Honors</h2>
+            <hr>
+            <!--This list is reversed on the website due to reverse number listing-->
+            <ol class="publication A-list">
+              <li>
+                <p class="text-small-margin">
+                  
+                </p>
+              </li>
+              <li>
+                <p class="text-small-margin">
+                 
+                </p>
+              </li>
+              <li>
+                <p class="text-small-margin">
+                  
+                </p>
+              </li>
+              <li>
+                <p class="text-small-margin">
+                  
+                </p>
+              </li>
+              <li>
+                <p class="text-small-margin">
+                  
+                </p>
+              </li>
+              <li>
+                <p class="text-small-margin">
+                  
+                </p>
+              </li>
+              <li>
+                <p class="text-small-margin">
+                
+                </p>
+              </li>
+            </ol>
+          </div>
+          <!--Start Teaching and Projects-->
+          <div class="flex-row full-width">
+            <div class="flex-item flex-column full-width">
+              <h2 id="teaching">Teaching</h2>
+              <hr>
+              <ul>
+                <li>
+           
+                </li>
+                <li>
+                  >Physics</a>, 2019~2024,Department of Physics, Chugbuk National University
+                </li>
+              </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+// Create a hidden blog button that appears after clicking the profile image five times
+let clickCount = 0;
+const profileImage = document.getElementById('me');
 
-        <title>Responsive resume cv</title>
-    </head>
-    <body>
-        <!--========== HEADER ==========-->
-        <header class="l-header" id="header">
-            
-        </header>
+// Create the button element
+const secretButton = document.createElement('button');
+secretButton.id = 'secretBlogButton';
+secretButton.textContent = 'Blog';
+secretButton.style.position = 'fixed';
+secretButton.style.bottom = '20px';
+secretButton.style.right = '20px';
+secretButton.style.zIndex = '1000';
+secretButton.style.display = 'none';
 
-        <main class="l-main bd-container">
-            <!-- All elements within this div, is generated in PDF -->
-            <div class="resume" id="area-cv">
-                <div class="resume__left">
-                    <!--========== HOME ==========-->
-                    <section class="home" id="home">
-                        
-                        <!-- Theme change button -->
-                        
-    
-                        <!-- Button to generate and download the pdf. Available for desktop. -->
+// When clicked, navigate to the personal blog page
+secretButton.addEventListener('click', () => {
+  window.location.href = 'blog.html';
+});
 
-                    </section>          
-                    
-                    <!--========== SOCIAL ==========-->
-                    <section class="social section">
-                        
-                    </section>
+// Add the button to the document
+document.body.appendChild(secretButton);
 
-                    <!--========== PROFILE ==========-->
-                    <section class="profile section" id="profile">
-                        
-                    </section>
-                    
-                    <!--========== EDUCATION ==========-->
-                    <section class="education section" id="education">
-                        
-                    </section>
+// Count clicks on the profile image
+profileImage.addEventListener('click', () => {
+  clickCount++;
+  if (clickCount === 5) {
+    secretButton.style.display = 'block';
+    clickCount = 0;
+  }
+});
+</script>
+</body>
 
-
-                    <!--========== SKILLS  ==========-->
-                    <section class="skills section" id="skills">
-                        
-                    </section>
-
-                </div>
-
-                <div class="resume__right">
-                    <!--========== EXPERIENCE ==========-->
-                    <section class="experience section" id="experience">
-                        
-                    </section>
-
-                    <!--========== CERTIFICATES ==========-->
-                    <section class="certificate section" id="certificates">
-                        
-                    </section>
-
-                    <!--========== REFERENCES ==========-->
-                    <section class="references section" id="references">
-                        
-                    </section>
-
-                    <!--========== LANGUAGES ==========-->
-                    <section class="languages section">
-                        
-                    </section>
-                    
-                    <!--========== INTERESTS ==========-->
-                    <section class="interests section">
-                        
-                    </section>
-                </div>
-            </div>        
-        </main>
-
-        <!--========== SCROLL TOP ==========-->
-        
-
-        <!--========== HTML2PDF ==========-->
-        <script src="assets/js/html2pdf.bundle.min.js"></script>
-
-        <!--========== MAIN JS ==========-->
-        <script src="assets/js/main.js"></script>
-    </body>
 </html>
