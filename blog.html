@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Open All Night — Jaesung's Notebook</title>
+  <style>
+    /* ---------- Overall Look (dark variation) ---------- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;          /* black background */
+      color: #ffffff;                     /* white text */
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    /* Links in cyan */
+    a:link, a:visited { color: #00ffff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { width: 960px; margin: 0 auto; padding: 0 10px; }
+
+    header { padding: 40px 0 20px; text-align: center; border-bottom: 1px solid #444; }
+    header h1 { margin: 0; font-size: 42px; letter-spacing: 2px; font-weight: normal; }
+    header p { margin: 5px 0 0; font-size: 14px; color: #bbb; }
+
+    main { display: flex; gap: 40px; padding-top: 30px; }
+
+    /* Posts column */
+    .posts { flex: 1 1 0; }
+    article { margin-bottom: 50px; }
+    article h2 { font-size: 28px; margin: 0 0 6px; font-weight: normal; }
+    .meta { font-size: 12px; color: #aaa; margin-bottom: 15px; }
+    hr { border: 0; border-top: 1px dotted #444; margin: 30px 0; }
+
+    /* Sidebar */
+    aside { width: 220px; flex-shrink: 0; font-size: 14px; }
+    .sidebar-section { margin-bottom: 30px; }
+    .sidebar-section h3 { margin: 0 0 10px; font-size: 16px; border-bottom: 1px solid #444; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .sidebar-section ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar-section ul li { margin: 4px 0; }
+
+    footer { text-align: center; font-size: 12px; color: #888; padding: 40px 0; border-top: 1px solid #444; margin-top: 40px; }
+
+    pre { background-color: #111; border-left: 4px solid #66ccff; padding: 10px 15px; overflow-x: auto; font-family: "Courier New", Courier, monospace; font-size: 14px; color: #e0e0e0; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <header>
+    <h1>OPEN ALL NIGHT</h1>
+    <p>— writings, fragments &amp; nocturnal notes by <b>Jaesung</b> —</p>
+  </header>
+
+  <main>
+    <!-- ========= POSTS (loaded dynamically) ========= -->
+    <section class="posts" id="posts">
+      <noscript>posts.txt를 읽어오려면 JavaScript가 필요합니다.</noscript>
+    </section>
+
+    <!-- ========= SIDEBAR ========= -->
+    <aside>
+      <div class="sidebar-section">
+        <h3>About Me</h3>
+        <p><b>Jaesung</b><br>Physics undergrad from South Korea.<br>Interested in Quantum Computing &amp; ML.</p>
+      </div>
+      <div class="sidebar-section">
+        <h3>Archive</h3>
+        <!-- 동적 포스트가 많아지면 JS로 합계를 채워도 됨 -->
+        <ul>
+          <li>2025 (0)</li>
+          <li>2024 (0)</li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="https://github.com">GitHub</a></li>
+          <li><a href="https://instagram.com">Instagram</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    © 1999-2025 Jaesung — All Rights Reserved • Powered by plain old HTML &amp; coffee
+  </footer>
+</div>
+
+<!-- ========= LOAD POSTS FROM TXT ========= -->
+<script>
+// posts.txt 예시 포맷
+// Title: My First Post
+// Date: 2025-05-06 14:00
+// ---
+// 본문 내용이 여러 줄이어도 됩니다.
+// ===
+// Title: Another Post
+// Date: 2025-05-05 10:00
+// ---
+// 두 번째 글...
+
+async function loadPosts() {
+  try {
+    const res = await fetch('posts.txt');
+    if (!res.ok) throw new Error('posts.txt not found');
+    const text = await res.text();
+
+    // 포스트 구분: === 로 나누기 (빈 줄 포함)
+    const blocks = text.split(/^===+$/m).map(b => b.trim()).filter(Boolean);
+    const postsContainer = document.getElementById('posts');
+
+    blocks.forEach(block => {
+      // Title
+      const titleMatch = block.match(/^Title\s*:\s*(.+)$/im);
+      const title = titleMatch ? titleMatch[1].trim() : 'Untitled';
+
+      // Date
+      const dateMatch = block.match(/^Date\s*:\s*(.+)$/im);
+      const date = dateMatch ? dateMatch[1].trim() : '';
+
+      // Content after the first line containing ---
+      const content = block.replace(/^([\s\S]*?)^-{3,}.*$/m, '')   // strip headers
+                           .replace(/^---.*$/m, '')                  // remove --- line
+                           .trim();
+
+      // Create DOM elements
+      const article = document.createElement('article');
+      const h2 = document.createElement('h2'); h2.textContent = title; article.appendChild(h2);
+      const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = date; article.appendChild(meta);
+
+      // Simple paragraph split: 두 줄 연속 → 새 단락, 한 줄 → <br>
+      const paragraphs = content.split(/\n\n+/);
+      paragraphs.forEach((para, idx) => {
+        const p = document.createElement('p');
+        p.innerHTML = para.replace(/\n/g, '<br>');
+        article.appendChild(p);
+      });
+
+      postsContainer.appendChild(article);
+      const hr = document.createElement('hr'); postsContainer.appendChild(hr);
+    });
+  } catch (e) {
+    console.error(e);
+    document.getElementById('posts').innerHTML = '<p>Unable to load posts.</p>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadPosts);
+</script>
+
+</body>
+</html>
